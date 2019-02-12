@@ -26,20 +26,7 @@ CREATE TABLE `buyer_table` (
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Table structure for table `item_seller`
---
 
-DROP TABLE IF EXISTS `item_seller`;
-CREATE TABLE `item_seller` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `item_id` int(11) NOT NULL,
-  `seller_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `address` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `item_id` (`item_id`,`seller_id`,`address`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Table structure for table `item_table`
@@ -64,6 +51,7 @@ CREATE TABLE `item_table` (
   UNIQUE KEY `barcode` (`barcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+
 --
 -- Table structure for table `label_table`
 --
@@ -73,8 +61,9 @@ CREATE TABLE `label_table` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `item_id` int(11) NOT NULL,
   `label` varchar(40) NOT NULL,
-  `value` varchar(40) NOT NULL,
+  `val` varchar(40) NOT NULL,
   PRIMARY KEY (`id`),
+  FOREIGN KEY (`item_id`) REFERENCES item_table(`item_id`),
   UNIQUE KEY `item_id` (`item_id`,`label`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -93,6 +82,24 @@ CREATE TABLE `seller_table` (
   PRIMARY KEY (`seller_id`),
   UNIQUE KEY `mobile` (`mobile`),
   UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+
+--
+-- Table structure for table `item_seller`
+--
+
+DROP TABLE IF EXISTS `item_seller`;
+CREATE TABLE `item_seller` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `item_id` int(11) NOT NULL,
+  `seller_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `address` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `item_id` (`item_id`,`seller_id`,`address`),
+  FOREIGN KEY (`item_id`) REFERENCES item_table(`item_id`),
+  FOREIGN KEY (`seller_id`) REFERENCES seller_table(`seller_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 INSERT INTO buyer_table(name, dob, mobile, address_1, address_2, email) VALUES
@@ -137,7 +144,7 @@ INSERT INTO item_seller(item_id, seller_id, quantity, address) VALUES
 (9, 4, 1000, 1),
 (10, 4, 2056, 1);
 
-INSERT INTO label_table(item_id, label, value) VALUES
+INSERT INTO label_table(item_id, label, val) VALUES
 (1, 'color', 'red'),
 (2, 'color', 'blue'),
 (3, 'color', 'green'),

@@ -47,7 +47,7 @@ public class DAO_Buyer {
 		try {
 			Connection conn = DatabaseConnection.getConnection();
 			java.sql.PreparedStatement preparedStatement = null;			
-			String query = "select * from buyer_table where id=?";
+			String query = "select * from buyer_table where buyer_id=?";
 			preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setInt(1, buyer_id);
 			rs = preparedStatement.executeQuery();
