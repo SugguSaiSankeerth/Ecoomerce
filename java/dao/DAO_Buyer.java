@@ -11,8 +11,8 @@ public class DAO_Buyer {
 		Connection conn=DatabaseConnection.getConnection();
 		PreparedStatement preparedStatement = null;
 		String query=null;
-		query = "insert into seller_table(name,dob,mobile,email,address_1,address_2) VALUES " +
-				 "(?,?,?,?,?);";
+		query = "insert into buyer_table(name,dob,mobile,email,address_1,address_2) VALUES " +
+				 "(?,?,?,?,?,?);";
 		try {
 			preparedStatement = conn.prepareStatement(query);
 			preparedStatement.setString(1, name);

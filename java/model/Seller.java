@@ -33,7 +33,7 @@ public class Seller {
 	public void setAddress_1(String address_1) {
 		this.address_1 = address_1;
 	}
-	public String getAddres_2() {
+	public String getAddress_2() {
 		return address_2;
 	}
 	public void setAddress_2(String addres_2) {

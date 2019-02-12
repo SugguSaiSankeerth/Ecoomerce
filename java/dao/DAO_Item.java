@@ -66,6 +66,7 @@ public class DAO_Item {
 		String query = "Delete from item_table where item_id=?";
 		try {
 			preparedStatement = conn.prepareStatement(query);
+			preparedStatement.setInt(1, item_id);
 			int rs = preparedStatement.executeUpdate();
 			if(rs==0) {
 				return false;

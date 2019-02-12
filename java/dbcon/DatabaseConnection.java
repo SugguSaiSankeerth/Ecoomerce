@@ -17,7 +17,7 @@ public class DatabaseConnection {
 			
 			Class.forName("com.mysql.jdbc.Driver");			
 			String user = "root";
-			String pass = "iiitb";
+			String pass = "";
 			System.out.println("Connecting to database...");
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/flipkartv2?autoReconnect=true&useSSL=false",
 					user, pass);
